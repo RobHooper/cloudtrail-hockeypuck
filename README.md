@@ -1,2 +1,5 @@
 # cloudtrail-hockeypuck
-Move cloudtrail data from S3 to MySQL
+These scripts move data from S3 to MySQL.
+
+## Installation
+git clone https://github.com/RobHooper/cloudtrail-hockeypuck.git
