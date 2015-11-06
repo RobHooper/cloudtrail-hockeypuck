@@ -3,11 +3,12 @@
 # Query the cloudtrail data so that we can seperate out the different records.
 #
 ############### Editable variables ######
-hostname = ""
-username = ""
-password = ""
-database = ""
-tablename = ""
+from ct-config import *
+#hostname = ""
+#username = ""
+#password = ""
+#database = ""
+#tablename = ""
 ##############
 
 
