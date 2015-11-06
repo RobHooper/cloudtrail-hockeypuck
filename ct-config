@@ -1,0 +1,4 @@
+# Set variables for use in scripts
+AWSPROFILE=''
+AWSREGION=''
+AWSCTQUEUE=''
