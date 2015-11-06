@@ -6,7 +6,6 @@
 from ctconfig import *
 ##############
 
-
 import json, sys
 
 X = json.load(sys.stdin)
@@ -20,7 +19,14 @@ db = MySQLdb.connect(host=hostname,
                      passwd=password,
                      db=database,)
 cursor = db.cursor()
-cursor.execute("INSERT INTO",tablename,"(eventVersion, eventID, eventTime, eventType, awsRegion, eventName, userIdentity, eventSource, sourceIPAddress, recipientAccountId)VALUES ('"+X['eventVersion']+"','"+X['eventID']+"','"+X['eventTime']+"','"+X['eventType']+"','"+X['awsRegion']+"','"+X['eventName']+"','"+json.dumps(X['userIdentity'])+"','"+X['eventSource']+"','"+X['sourceIPAddress']+"','"+X['recipientAccountId']+"');")
+
+XUI=json.dumps(X['userIdentity'])
+
+VARNAME="eventVersion, eventID, eventTime, eventType, awsRegion, eventName, userIdentity, eventSource, sourceIPAddress, recipientAccountId"
+VALUES="'"+X['eventVersion']+"','"+X['eventID']+"','"+X['eventTime']+"','"+X['eventType']+"','"+X['awsRegion']+"','"+X['eventName']+"','"+XUI+"','"+X['eventSource']+"','"+X['sourceIPAddress']+"','"+X['recipientAccountId']+"'"
+
+cursor.execute("INSERT INTO %s (%s) VALUES (%s);" % (tablename, VARNAME, VALUES))
+
 db.commit()
 
 # close the cursor object
