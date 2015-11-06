@@ -1,5 +1,5 @@
 #!/bin/bash
-. ct-config
+. ctconfig.py
 
 # Get how many messages are in the queue
 X=`aws --profile "$AWSPROFILE" --region "$AWSREGION" --output text sqs get-queue-attributes --queue-url $AWSCTQUEUE --attribute-names ApproximateNumberOfMessages | cut -f '2'`

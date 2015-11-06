@@ -2,7 +2,7 @@
 ######################
 # Master script that connects all other scripts and automates the process
 ###################
-. ct-config
+. ctconfig.py
 ######################################
 set -euo pipefail
 IFS=$'\n\t'
