@@ -23,9 +23,13 @@ cursor = db.cursor()
 XUI=json.dumps(X['userIdentity'])
 
 VARNAME="eventVersion, eventID, eventTime, eventType, awsRegion, eventName, userIdentity, eventSource, sourceIPAddress, recipientAccountId"
+
 VALUES="'"+X['eventVersion']+"','"+X['eventID']+"','"+X['eventTime']+"','"+X['eventType']+"','"+X['awsRegion']+"','"+X['eventName']+"','"+XUI+"','"+X['eventSource']+"','"+X['sourceIPAddress']+"','"+X['recipientAccountId']+"'"
 
-cursor.execute("INSERT INTO %s (%s) VALUES (%s);" % (tablename, VARNAME, VALUES))
+# Test that the event is not in there previously
+SAN = cursor.execute("SELECT eventID FROM %s where eventID = '%s'" % (tablename, X['eventID']))
+if SAN == 0 :
+    cursor.execute("INSERT INTO %s (%s) VALUES (%s);" % (tablename, VARNAME, VALUES))
 
 db.commit()
 
